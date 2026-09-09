@@ -27,5 +27,5 @@ pnpm-debug.log*
 *.swp
 *.swo
 
-# Server data (user accounts)
-data
+# Server data (user accounts) — root data/ dir only, NOT src/data
+/data/
