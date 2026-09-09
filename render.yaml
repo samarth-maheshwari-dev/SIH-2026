@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: stackconnect
+    runtime: node
+    buildCommand: npm install && npm run build
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: development
+      - key: JWT_SECRET
+        generateValue: true
+      - key: OMNIROUTE_URL
+        sync: false
+      - key: OMNIROUTE_KEY
+        sync: false
+      - key: OMNIROUTE_MODEL
+        value: auto/best-coding
+      - key: OLLAMA_URL
+        sync: false
+      - key: OLLAMA_MODEL
+        value: gemma4:latest
+      - key: E2B_API_KEY
+        sync: false
+    disk:
+      name: sqlite-data
+      mountPath: data
+      sizeGB: 1
