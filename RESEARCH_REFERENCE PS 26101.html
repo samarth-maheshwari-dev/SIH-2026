@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIH 2026 · PS 26101 — Full Battle Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0c11; --bg2:#0e1117; --surface:#141823; --surface2:#1a1f2c;
+  --border:rgba(255,255,255,.08); --border2:rgba(255,255,255,.14);
+  --text:#e9ecf2; --muted:#9aa3b2; --dim:#6b7280;
+  --accent:#6d7cf5; --accent2:#8b5cf6; --grad:linear-gradient(135deg,#6d7cf5,#a78bfa 55%,#f472b6);
+  --green:#34d399; --amber:#fbbf24; --red:#f87171; --blue:#60a5fa; --purple:#c084fc;
+  --radius:14px; --radius-sm:9px;
+  --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.62;font-size:15px;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(109,124,245,.35)}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(14px);background:rgba(10,12,17,.82);border-bottom:1px solid var(--border)}
+.nav-in{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:15px;letter-spacing:.3px;display:flex;align-items:center;gap:9px}
+.logo .dot{width:10px;height:10px;border-radius:3px;background:var(--grad);display:inline-block;box-shadow:0 0 14px rgba(139,92,246,.8)}
+.nav-links{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12.5px;font-weight:500;padding:6px 10px;border-radius:8px;transition:.18s}
+.nav-links a:hover{color:var(--text);background:var(--surface)}
+.nav-badge{font-family:var(--mono);font-size:11px;color:var(--accent2);border:1px solid rgba(139,92,246,.4);padding:4px 10px;border-radius:99px;background:rgba(139,92,246,.08)}
+
+/* ---------- HERO ---------- */
+header.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border);background:
+  radial-gradient(900px 420px at 15% -10%,rgba(109,124,245,.22),transparent 60%),
+  radial-gradient(800px 380px at 90% 10%,rgba(244,114,182,.12),transparent 55%),
+  var(--bg2)}
+.hero-in{max-width:1180px;margin:0 auto;padding:64px 24px 56px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:2.5px;color:var(--accent);text-transform:uppercase;margin-bottom:16px;display:flex;gap:14px;flex-wrap:wrap}
+.eyebrow span{padding:3px 11px;border:1px solid var(--border2);border-radius:99px;background:var(--surface)}
+h1{font-size:clamp(30px,5vw,50px);font-weight:800;line-height:1.08;letter-spacing:-1.2px;margin-bottom:18px}
+h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{max-width:760px;color:var(--muted);font-size:16.5px;margin-bottom:30px}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.chip{font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:99px;border:1px solid var(--border2);background:var(--surface);color:var(--text)}
+.chip.g{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.35);color:var(--green)}
+.chip.a{background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.35);color:var(--amber)}
+.chip.r{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.35);color:var(--red)}
+.chip.b{background:rgba(96,165,250,.1);border-color:rgba(96,165,250,.35);color:var(--blue)}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:34px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px}
+.stat .n{font-size:24px;font-weight:800;font-family:var(--mono)}
+.stat .l{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.4}
+.stat .n.g{color:var(--green)} .stat .n.a{color:var(--amber)} .stat .n.r{color:var(--red)} .stat .n.p{color:var(--purple)}
+
+/* ---------- LAYOUT ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:28px 24px 90px}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-bottom:44px}
+.toc a{display:flex;gap:11px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 15px;text-decoration:none;color:var(--text);transition:.18s;font-size:13px;font-weight:600}
+.toc a:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(109,124,245,.14)}
+.toc .no{font-family:var(--mono);font-size:12px;color:var(--accent);background:rgba(109,124,245,.12);border-radius:7px;padding:3px 8px;white-space:nowrap}
+
+/* ---------- SECTIONS ---------- */
+section.ph{margin-bottom:58px}
+.ph-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:18px}
+.ph-num{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--accent2);background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:7px 11px;white-space:nowrap;margin-top:2px}
+.ph-title{font-size:clamp(20px,3vw,27px);font-weight:750;letter-spacing:-.5px;line-height:1.2}
+.ph-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--dim);margin-top:4px}
+h3{font-size:16.5px;font-weight:700;margin:26px 0 10px;letter-spacing:-.2px}
+h3 .sub{color:var(--accent2);font-family:var(--mono);font-size:12px;font-weight:600;margin-left:8px}
+h4{font-size:14px;font-weight:700;margin:18px 0 8px;color:#cdd3e0}
+p{margin-bottom:12px;color:#c6ccd8}
+strong{color:#fff}
+code{font-family:var(--mono);font-size:12.5px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:2px 7px;color:var(--accent2)}
+ul{margin:6px 0 14px 20px}
+li{margin-bottom:6px;color:#c6ccd8}
+li::marker{color:var(--accent)}
+
+/* ---------- CALLOUTS ---------- */
+.co{display:flex;gap:12px;padding:14px 16px;border-radius:var(--radius-sm);margin:14px 0;border:1px solid;font-size:14px;align-items:flex-start}
+.co .ic{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:1px;padding:3px 9px;border-radius:6px;white-space:nowrap;margin-top:1px}
+.co.fact{background:rgba(52,211,153,.06);border-color:rgba(52,211,153,.28)} .co.fact .ic{background:rgba(52,211,153,.16);color:var(--green)}
+.co.inf{background:rgba(251,191,36,.06);border-color:rgba(251,191,36,.28)} .co.inf .ic{background:rgba(251,191,36,.16);color:var(--amber)}
+.co.ass{background:rgba(96,165,250,.06);border-color:rgba(96,165,250,.28)} .co.ass .ic{background:rgba(96,165,250,.16);color:var(--blue)}
+.co.unv{background:rgba(148,163,184,.07);border-color:rgba(148,163,184,.3)} .co.unv .ic{background:rgba(148,163,184,.16);color:var(--muted)}
+.co.r{background:rgba(248,113,113,.06);border-color:rgba(248,113,113,.28)} .co.r .ic{background:rgba(248,113,113,.16);color:var(--red)}
+
+/* ---------- TABLES ---------- */
+.tblwrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius-sm);margin:14px 0}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13px}
+th{background:var(--surface2);color:#d6dbe6;font-weight:600;text-align:left;padding:10px 13px;font-size:11.5px;letter-spacing:.4px;text-transform:uppercase;border-bottom:1px solid var(--border2);white-space:nowrap}
+td{padding:10px 13px;border-bottom:1px solid var(--border);vertical-align:top;color:#c2c8d4}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(109,124,245,.05)}
+td b{color:#fff}
+.mini{font-size:12px}
+
+/* ---------- GRIDS / CARDS ---------- */
+.grid{display:grid;gap:12px;margin:14px 0}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 17px}
+.card h5{font-size:13.5px;font-weight:700;margin-bottom:7px;color:#dfe4ee;display:flex;gap:8px;align-items:center}
+.card p{font-size:13px;color:var(--muted);margin:0}
+.card .big{font-size:15px;font-weight:700;color:var(--accent2);margin-bottom:4px}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:3px 9px;border-radius:99px;font-family:var(--mono)}
+.tag.red{background:rgba(248,113,113,.13);color:var(--red);border:1px solid rgba(248,113,113,.3)}
+.tag.green{background:rgba(52,211,153,.13);color:var(--green);border:1px solid rgba(52,211,153,.3)}
+.tag.yellow{background:rgba(251,191,36,.13);color:var(--amber);border:1px solid rgba(251,191,36,.3)}
+.tag.blue{background:rgba(96,165,250,.13);color:var(--blue);border:1px solid rgba(96,165,250,.3)}
+.tag.purple{background:rgba(192,132,252,.13);color:var(--purple);border:1px solid rgba(192,132,252,.3)}
+
+/* ---------- FLOW ---------- */
+.flow{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;margin:14px 0}
+.flow .step{flex:1;min-width:150px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 13px;position:relative}
+.flow .step .s{font-family:var(--mono);font-size:10.5px;color:var(--accent);font-weight:700;letter-spacing:.8px}
+.flow .step b{display:block;font-size:13px;margin:4px 0 3px}
+.flow .step small{color:var(--dim);font-size:11.5px;line-height:1.45;display:block}
+.flow .step.ai{border-color:rgba(139,92,246,.4);background:linear-gradient(160deg,rgba(139,92,246,.09),rgba(109,124,245,.03))}
+
+/* ---------- BATTLE CARD ---------- */
+.battle{background:
+  radial-gradient(700px 300px at 10% 0%,rgba(109,124,245,.25),transparent 55%),
+  radial-gradient(600px 280px at 95% 100%,rgba(244,114,182,.14),transparent 55%),
+  var(--surface);border:1px solid rgba(139,92,246,.35);border-radius:18px;padding:38px 34px;margin-top:30px;position:relative;overflow:hidden}
+.battle h2{font-size:clamp(24px,4vw,36px);font-weight:800;letter-spacing:-.8px;margin-bottom:6px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.battle .sbt{color:var(--muted);font-size:14px;margin-bottom:26px}
+.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.bcard{background:rgba(10,12,17,.5);border:1px solid var(--border2);border-radius:12px;padding:16px 18px}
+.bcard .k{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent2);margin-bottom:7px;font-family:var(--mono)}
+.bcard p,.bcard li{font-size:13.5px}
+.score-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:22px 0}
+.score{background:rgba(10,12,17,.55);border:1px solid var(--border2);border-radius:12px;padding:16px;text-align:center}
+.score .s-n{font-size:32px;font-weight:800;font-family:var(--mono)}
+.score .s-l{font-size:11.5px;color:var(--muted);margin-top:2px}
+.score.x{background:linear-gradient(160deg,rgba(109,124,245,.18),rgba(139,92,246,.05))}
+.verdict{margin-top:22px;padding:18px 22px;border-radius:12px;border:1px solid;font-size:15.5px;font-weight:650;text-align:center}
+.verdict.yes{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.4);color:var(--green)}
+.lift{font-size:14px;font-weight:800;font-family:var(--mono);text-transform:uppercase;letter-spacing:2px;text-align:center;margin:36px 0 0;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- MISC ---------- */
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:46px 0}
+.foot{max-width:1180px;margin:0 auto;padding:26px 24px 60px;color:var(--dim);font-size:12.5px;border-top:1px solid var(--border)}
+.foot b{color:var(--muted)}
+.kicker{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;font-weight:700}
+.big-num{font-size:44px;font-weight:800;font-family:var(--mono);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+@media(max-width:640px){.nav-links{display:none}.hero-in{padding:44px 18px 40px}.wrap{padding:20px 16px 70px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="logo"><span class="dot"></span>SIH Intelligence</div>
+    <div class="nav-badge">PS 26101 · MoSPI</div>
+    <div class="nav-links">
+      <a href="#p0">Verify</a><a href="#p1">Problem</a><a href="#p2">Evidence</a><a href="#p3">Status Quo</a>
+      <a href="#p4">Global</a><a href="#p5">India</a><a href="#p6">SIH</a><a href="#p7">GitHub</a>
+      <a href="#p8">Tech</a><a href="#p9">Data</a><a href="#p12">Gaps</a><a href="#p15">500 Teams</a>
+      <a href="#p18">Arch</a><a href="#p24">Solution</a><a href="#p27">Demo</a><a href="#p30">Score</a>
+      <a href="#battle">Battle Card</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="eyebrow"><span>Smart India Hackathon 2026</span><span>Smart Education</span><span>Software</span></div>
+    <h1>PS 26101 — G<span class="g">od-Mode</span> Research</h1>
+    <p class="hero-sub">AI-enabled learning platform for India's Official Statistical System: competency-gap identification, iGOT Karmayogi integration, and quiz/MCQ generation from uploaded materials. Yeh report batata hai — real problem, existing systems, competitors, winning strategy, aur final battle card. Sab easy Hinglish mein, evidence ke saath.</p>
+    <div class="hero-meta">
+      <span class="chip">🏛 MoSPI · DIID</span>
+      <span class="chip g">✅ PS Verified</span>
+      <span class="chip a">⚠️ 1 Gap: "coding sandbox" expectation</span>
+      <span class="chip b">🌐 iGOT 1.7 Cr users</span>
+      <span class="chip r">🔥 Winability 78/100</span>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="n g">1.7 Cr</div><div class="l">iGOT Karmayogi registered users (Aug 2025, Lok Sabha)</div></div>
+      <div class="stat"><div class="n">5,600+</div><div class="l">courses · 23 languages · 218 AI courses</div></div>
+      <div class="stat"><div class="n a">7.3 Cr</div><div class="l">course enrolments till date</div></div>
+      <div class="stat"><div class="n r">44%</div><div class="l">attrition in Subordinate Statistical Service (IE, Jan 2026)</div></div>
+      <div class="stat"><div class="n p">78/100</div><div class="l">our final winability score</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- TOC -->
+<div class="toc">
+  <a href="#p0"><span class="no">P0</span> Verification</a>
+  <a href="#p1"><span class="no">P1</span> Problem Deconstruction</a>
+  <a href="#p2"><span class="no">P2</span> Real-World Evidence</a>
+  <a href="#p3"><span class="no">P3</span> Current System / Status Quo</a>
+  <a href="#p4"><span class="no">P4</span> Global Solutions</a>
+  <a href="#p5"><span class="no">P5</span> India Landscape</a>
+  <a href="#p6"><span class="no">P6</span> Previous SIH / Hackathons</a>
+  <a href="#p7"><span class="no">P7</span> GitHub Intelligence</a>
+  <a href="#p8"><span class="no">P8</span> Technical Landscape</a>
+  <a href="#p9"><span class="no">P9</span> Data & API Intel</a>
+  <a href="#p10"><span class="no">P10</span> User & Workflow</a>
+  <a href="#p11"><span class="no">P11</span> Root Cause Analysis</a>
+  <a href="#p12"><span class="no">P12</span> Gap Analysis</a>
+  <a href="#p13"><span class="no">P13</span> Competitor Weaknesses</a>
+  <a href="#p14"><span class="no">P14</span> Judge Mindset</a>
+  <a href="#p15"><span class="no">P15</span> 500-Team Simulation</a>
+  <a href="#p16"><span class="no">P16</span> Innovation Map</a>
+  <a href="#p17"><span class="no">P17</span> AI Opportunity Map</a>
+  <a href="#p18"><span class="no">P18</span> Architecture</a>
+  <a href="#p19"><span class="no">P19</span> MVP vs Production</a>
+  <a href="#p20"><span class="no">P20</span> Buildability</a>
+  <a href="#p21"><span class="no">P21</span> Business Opportunity</a>
+  <a href="#p22"><span class="no">P22</span> Security & Constraints</a>
+  <a href="#p23"><span class="no">P23</span> Failure Modes</a>
+  <a href="#p24"><span class="no">P24</span> Best Solution</a>
+  <a href="#p25"><span class="no">P25</span> USP Analysis</a>
+  <a href="#p26"><span class="no">P26</span> Why Us?</a>
+  <a href="#p27"><span class="no">P27</span> Demo Strategy</a>
+  <a href="#p28"><span class="no">P28</span> Judge Q&A</a>
+  <a href="#p29"><span class="no">P29</span> Red Team Attack</a>
+  <a href="#p30"><span class="no">P30</span> Winability Score</a>
+  <a href="#p31"><span class="no">P31</span> Source Audit</a>
+  <a href="#p32"><span class="no">P32</span> Final Synthesis</a>
+  <a href="#battle"><span class="no">🎯</span> 1-Page Battle Card</a>
+</div>
+<!-- ============ PHASE 0 ============ -->
+<section class="ph" id="p0">
+  <div class="ph-head"><div class="ph-num">P0</div><div><div class="ph-title">Problem Statement Verification</div><div class="ph-tag">Check · Verify · No silent fixes</div></div></div>
+
+  <div class="co fact"><span class="ic">FACT</span><div><b>PS 26101 verified.</b> Official source (sih.gov.in SIH-2026 PS list, mirrors: sihone.pages.dev/ps/26101 + NoBugNinja GitHub dataset, last updated Aug 22 2026) confirms: <b>Organization = MoSPI (DIID)</b>, <b>Theme = Smart Education</b>, <b>Category = Software</b>. Title matches the supplied text word-for-word.</div></div>
+
+  <div class="tblwrap"><table>
+    <tr><th>Field</th><th>Official (sihone/sih.gov.in)</th><th>Supplied</th><th>Match</th></tr>
+    <tr><td><b>PS ID</b></td><td>26101</td><td>26101</td><td>✅</td></tr>
+    <tr><td><b>Title</b></td><td>"Develop an AI enabled learning platform that identifies competency gaps, recommends personalized training through integration with the iGOT Karmayogi ecosystem…generating Quizzes and MCQs from uploaded learning materials…"</td><td>Same</td><td>✅</td></tr>
+    <tr><td><b>Organization</b></td><td>MoSPI (DIID = Data Informatics &amp; Innovation Division)</td><td>MoSPI · DIID</td><td>✅</td></tr>
+    <tr><td><b>Theme / Category</b></td><td>Smart Education / Software</td><td>Same</td><td>✅</td></tr>
+  </table></div>
+
+  <div class="co a"><span class="ic">GAP</span><div><b>One difference you didn't supply:</b> the sihone modal adds — <i>"delivers personalized interactive micro-learning modules with <b>coding sandboxes</b>"</i> (Python/R data science). That's a judge-facing expectation: coding practice inside the platform. Keep it in the MVP.</div></div>
+</section>
+
+<!-- ============ PHASE 1 ============ -->
+<section class="ph" id="p1">
+  <div class="ph-head"><div class="ph-num">P1</div><div><div class="ph-title">Problem Deconstruction</div><div class="ph-tag">Explain like I'm 15 · Root cause · Stakeholders · Why now</div></div></div>
+
+  <h3>1.1 One-line Problem</h3>
+  <p>India ke statistical officers ko aaj bhi training <b>manually dhundni padti hai</b> — koi system nahi jaanta ki us officer ka actual skill gap kya hai, kaunsa course sahi hai, aur uploaded PDF/PPT se quiz kaise banega. <b>AI se gap identify karo, iGOT se connect karo, uploaded material se MCQ auto-generate karo.</b></p>
+
+  <h3>1.2 Example — Priya, 28, JSO</h3>
+  <div class="co inf"><span class="ic">STORY</span><div>Priya Lucknow mein <b>JSO (Junior Statistical Officer)</b> hai, NSSO mein. Naya PLFS (Periodic Labour Force Survey) aaya hai — usse <b>sampling design</b> revise karna hai. Woh iGOT Karmayogi par login karti hai: <b>5,600+ courses</b>. "Sampling" search karti hai → 30 results. <b>Kaunsa sahi hai uske role ke liye? Platform nahi jaanta.</b> Uska senior ek naya 3-lecture ka <b>PDF circular</b> bhejta hai — team ke liye quiz kaun banayega? Koi auto-system nahi hai. Yehi problem hai.</div></div>
+
+  <h3>1.3 Real Problem</h3>
+  <ul>
+    <li><b>Statistical workforce badal raha hai:</b> Excel/paper surveys se Python, R, ML, geospatial, big data tak.</li>
+    <li><b>Training static hai:</b> NSSTA classroom (Greater Noida) saal mein kuch batches — continuous upskilling ke liye insufficient.</li>
+    <li><b>iGOT generic hai:</b> courses sabke liye same — "Karmayogi Officer" ke liye, MoSPI-role-specific nahi.</li>
+    <li><b>Skill mapping missing:</b> supervisor ko nahi pata team kahan weak hai. Assessment manual. Material (PDFs/circulars) alag rehta hai, quizzes alag.</li>
+  </ul>
+
+  <h3>1.4 Root Problem <span class="sub">4 root causes, not one</span></h3>
+  <div class="grid g4">
+    <div class="card"><h5>🔀 Fragmented Framework</h5><p>MoSPI ke paas role-level granular <b>competency dictionary</b> nahi — FRAC generic hai.</p></div>
+    <div class="card"><h5>🎓 Learning ≠ Job</h5><p>iGOT par mapping/recommendation logic shallow — course lerka role se match nahi hota.</p></div>
+    <div class="card"><h5>📉 No Data Flywheel</h5><p>Supervisor ko visibility nahi: kisne kya seekha, kahan weak hai → manual reporting.</p></div>
+    <div class="card"><h5>📄 Material→Assessment Gap</h5><p>Circulars/PDFs aate hain, par auto-assessment zero.</p></div>
+  </div>
+
+  <h3>1.5 Symptoms</h3>
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Symptom</th><th>Evidence</th><th>Type</th></tr>
+    <tr><td>Officers ko "kya seekhein" nahi pata</td><td>NSSTA STA Survey — skill gaps acknowledged, "emerging areas"</td><td><span class="tag green">FACT</span></td></tr>
+    <tr><td>Attrition 44%, promotions 1/dashak</td><td>Indian Express Jan 2026 (AIASO letter)</td><td><span class="tag green">FACT</span></td></tr>
+    <tr><td>Training static, classroom-bound</td><td>PS 26101 description itself</td><td><span class="tag green">FACT</span></td></tr>
+    <tr><td>iGOT parity: AI features nascent</td><td>Minister reply Aug 2025 ("AI Tutor, AI Sarthi recently introduced")</td><td><span class="tag green">FACT</span></td></tr>
+    <tr><td>Generic recommendations only</td><td>No MoSPI-specific tier found in any source</td><td><span class="tag yellow">INFERENCE</span></td></tr>
+  </table></div>
+
+  <h3>1.6 Stakeholders</h3>
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Stakeholder</th><th>Pain</th><th>Need</th><th>Success</th></tr>
+    <tr><td><b>Statistical Officer (JSO/SSO/ISS)</b></td><td>Skill gap in Python/R/sampling, generic iGOT</td><td>Personalized learning path</td><td>AI coach suggests next module</td></tr>
+    <tr><td><b>SSS cadre (data collectors)</b></td><td>Stagnation, attrition</td><td>Continuous micro-learning</td><td>Bite-sized, job-relevant</td></tr>
+    <tr><td><b>Department Heads</b></td><td>No team competency visibility</td><td>Real-time competency dashboard</td><td>Predictive skill-gap map</td></tr>
+    <tr><td><b>NSSTA Trainers</b></td><td>Limited classroom slots</td><td>AI-augmented teaching</td><td>AI tutor + auto-MCQs</td></tr>
+    <tr><td><b>DIID (MoSPI)</b></td><td>Wants modern analytics cadre</td><td>AI competency engine</td><td>Production-grade platform</td></tr>
+    <tr><td><b>DoPT / Mission Karmayogi</b></td><td>Integration depth</td><td>Sector-specific layer</td><td>MoSPI vertical demonstrably better</td></tr>
+    <tr><td><b>CBC + Karmayogi Bharat (SPV)</b></td><td>Course marketplace growth</td><td>AI-driven discovery</td><td>Interactive competency graphs</td></tr>
+    <tr><td><b>HR / APAR reviewers</b></td><td>Static annual snapshot</td><td>Real-time competency record</td><td>Continuous competency score</td></tr>
+    <tr><td><b>State DES / State Stats Directorates</b></td><td>Slow training cycles</td><td>Federated capability</td><td>Self-serve competency level</td></tr>
+  </table></div>
+
+  <h3>1.7 WHY NOW (2026)?</h3>
+  <div class="grid g3">
+    <div class="card"><h5>📈 iGOT at scale</h5><p class="big">1.7 Cr users</p><p>Personalization problem created by scale — now solvable with AI.</p></div>
+    <div class="card"><h5>📝 APAR linkage</h5><p class="big">FY 2025-26</p><p>iGOT completion mandatory → performance appraisals. Learning = career.</p></div>
+    <div class="card"><h5>🤖 AI literacy drive</h5><p class="big">218 AI courses</p><p>2026: Mission Karmayogi showcase at India AI Impact Summit.</p></div>
+    <div class="card"><h5>⚠️ Attrition crisis</h5><p class="big">44%</p><p>Retain + reskill urgent — not just recruit (IE Jan 2026).</p></div>
+    <div class="card"><h5>🚀 Sadhana Saptah 2026</h5><p class="big">3.18 Cr completions</p><p>One week spike. Proves demand + infra gaps.</p></div>
+    <div class="card"><h5>🖥️ Coding sandbox expectation</h5><p class="big">PS modal</p><p>Judges expect interactive micro-learning + coding practice.</p></div>
+  </div>
+</section>
+
+<!-- ============ PHASE 2 ============ -->
+<section class="ph" id="p2">
+  <div class="ph-head"><div class="ph-num">P2</div><div><div class="ph-title">Real-World Evidence</div><div class="ph-tag">Primary sources · numbers · no invented stats</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>#</th><th>Evidence</th><th>Source</th><th>Date</th><th>F/I</th><th>Reliability</th></tr>
+    <tr><td>1</td><td>iGOT Karmayogi 1.7 Cr+ users</td><td>Union Minister Jitendra Singh, Lok Sabha written reply</td><td>Aug 5 2025</td><td><span class="tag green">F</span></td><td>High (PIB)</td></tr>
+    <tr><td>2</td><td>5,600+ courses · 23 languages · 218 AI courses</td><td>Same reply</td><td>Aug 2025</td><td><span class="tag green">F</span></td><td>High</td></tr>
+    <tr><td>3</td><td>7.3 Cr enrolments · 3.35 Cr completions · 14.29 L certs</td><td>Same reply</td><td>Aug 2025</td><td><span class="tag green">F</span></td><td>High</td></tr>
+    <tr><td>4</td><td>FY 2025-26 se iGOT completion → APAR mandatory</td><td>Same reply</td><td>Aug 2025</td><td><span class="tag green">F</span></td><td>High</td></tr>
+    <tr><td>5</td><td>"iGOT AI Tutor, AI Sarthi, AI-CBP Tool" introduced</td><td>Same reply</td><td>Aug 2025</td><td><span class="tag green">F</span></td><td>High — AI features nascent</td></tr>
+    <tr><td>6</td><td>Sadhana Saptah: 3.18 Cr course completions in 1 week</td><td>Tarento case study</td><td>2026</td><td><span class="tag green">F</span></td><td>Medium-High (vendor)</td></tr>
+    <tr><td>7</td><td>FRAC = Framework of Roles, Activities, Competencies</td><td>DoPT / Mission Karmayogi PDF</td><td>2021</td><td><span class="tag green">F</span></td><td>High (gov)</td></tr>
+    <tr><td>8</td><td>44% attrition, "acute stagnation" in SSS cadre</td><td>Indian Express + AIASO letter</td><td>Jan 2026</td><td><span class="tag green">F</span></td><td>High</td></tr>
+    <tr><td>9</td><td>NSSTA training incl. AI/Big Data/ML</td><td>PIB Rajya Sabha reply</td><td>2024-25</td><td><span class="tag green">F</span></td><td>High</td></tr>
+    <tr><td>10</td><td>NSSTA "Statistical Training Needs Assessment Survey"</td><td>PIB</td><td>2024</td><td><span class="tag green">F</span></td><td>High — skill gaps formally surveyed</td></tr>
+    <tr><td>11</td><td>DIID = Data Informatics &amp; Innovation Division</td><td>MoSPI official</td><td>—</td><td><span class="tag green">F</span></td><td>High</td></tr>
+    <tr><td>12</td><td>Tarento = iGOT technology partner since 2021</td><td>Tarento case study</td><td>2026</td><td><span class="tag green">F</span></td><td>Medium (vendor)</td></tr>
+    <tr><td>13</td><td>AI-enabled capacity building showcase (India AI Impact Summit 2026)</td><td>PIB</td><td>Feb 2026</td><td><span class="tag green">F</span></td><td>High</td></tr>
+    <tr><td>14</td><td>PS expects "coding sandboxes" (Python/R)</td><td>sihone 26101 modal</td><td>Aug 2026</td><td><span class="tag yellow">I</span></td><td>Medium (community)</td></tr>
+    <tr><td>15</td><td>"No semantic search across MoSPI-specific content"</td><td>—</td><td>—</td><td><span class="tag yellow">I</span></td><td>—</td></tr>
+    <tr><td>16</td><td>"MCQ-gen from uploads unsolved at govt scale"</td><td>Tarento listed AI features (no doc-to-quiz)</td><td>2026</td><td><span class="tag yellow">I</span></td><td>Medium</td></tr>
+  </table></div>
+
+  <div class="co unv"><span class="ic">UNVERIFIED</span><div>MoSPI exact sanctioned strength · iGOT public REST API · MoSPI internal competency dictionary (vs reusing FRAC) · student access to iGOT sandbox/test env.</div></div>
+</section>
+
+<!-- ============ PHASE 3 ============ -->
+<section class="ph" id="p3">
+  <div class="ph-head"><div class="ph-num">P3</div><div><div class="ph-title">Current System / Status Quo</div><div class="ph-tag">Aaj ek officer ko training kaise milti hai</div></div></div>
+
+  <h3>Current State Workflow</h3>
+  <div class="flow">
+    <div class="step"><span class="s">STEP 1</span><b>Joining / Role</b><small>APAR + cadre allocation. AI: ❌</small></div>
+    <div class="step"><span class="s">STEP 2</span><b>Self-Assessment</b><small>Nothing formal. AI: ❌</small></div>
+    <div class="step"><span class="s">STEP 3</span><b>Course Discovery</b><small>iGOT search / NSSTA calendar. AI: ⚠️ AI Sarthi (basic)</small></div>
+    <div class="step"><span class="s">STEP 4</span><b>Enrolment</b><small>Manual / nomination. AI: ❌</small></div>
+    <div class="step"><span class="s">STEP 5</span><b>Learning</b><small>Video/PDF/quiz on iGOT. AI: ⚠️ subtitles 11 langs</small></div>
+    <div class="step"><span class="s">STEP 6</span><b>Assessment</b><small>Static MCQ bank. AI: ❌ no auto-gen</small></div>
+    <div class="step"><span class="s">STEP 7</span><b>Certification</b><small>Auto cert. AI: ❌</small></div>
+    <div class="step"><span class="s">STEP 8</span><b>APAR Reporting</b><small>Annual snapshot. AI: ❌</small></div>
+  </div>
+
+  <h3>Current System Weaknesses</h3>
+  <ul>
+    <li><b>W1 — No role→competency ontology</b> for MoSPI (FRAC generic). <span class="tag yellow">INFERENCE</span></li>
+    <li><b>W2 — Recommendations not contextual</b> — AI Tutor/Sarthi just launched, basic. <span class="tag green">FACT</span></li>
+    <li><b>W3 — No document→quiz</b> — Tarento's AI features: moderation, tagging, India map validation, profanity. No quiz-gen. <span class="tag green">FACT (vendor)</span></li>
+    <li><b>W4 — No coding sandbox</b> for stats workforce. <span class="tag yellow">INFERENCE</span></li>
+    <li><b>W5 — Admin dashboards basic</b> — "purpose-built dashboards" implies previously weak. <span class="tag green">FACT (vendor)</span></li>
+    <li><b>W6 — No predictive skill forecasting</b>. <span class="tag yellow">INFERENCE</span></li>
+    <li><b>W7 — APAR annual vs learning continuous</b> → disconnect. <span class="tag green">FACT</span></li>
+    <li><b>W8 — Training doesn't address attrition</b> (44% SSS). <span class="tag green">FACT</span></li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 4 ============ -->
+<section class="ph" id="p4">
+  <div class="ph-head"><div class="ph-num">P4</div><div><div class="ph-title">Global Existing Solutions</div><div class="ph-tag">World mein kya bana hai</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Solution</th><th>Country</th><th>What it does</th><th>AI?</th><th>Strength</th><th>Weakness</th><th>Relevance</th></tr>
+    <tr><td><b>Eightfold AI</b> Talent Intelligence</td><td>US</td><td>Skill inference, role matching, deep-learning skill graph</td><td>✅ Deep</td><td>1B+ profiles skill ontology</td><td>Expensive, opaque, US-centric</td><td>⭐⭐⭐⭐⭐</td></tr>
+    <tr><td><b>Workday Skills Cloud + Degreed</b></td><td>US</td><td>Skill graph + learning recs + LXP</td><td>✅</td><td>HRIS backbone integration</td><td>Generic, not govt-domain</td><td>⭐⭐⭐⭐</td></tr>
+    <tr><td><b>LinkedIn Learning</b> AI Skill Pathways</td><td>US</td><td>Personalized paths, skill evals</td><td>✅</td><td>Huge data, trusted</td><td>Consumer-skewed</td><td>⭐⭐⭐</td></tr>
+    <tr><td><b>Pluralsight Skills</b></td><td>US</td><td>Tech skill paths, hands-on labs</td><td>⚠️</td><td>Real coding labs</td><td>Expensive, not stats domain</td><td>⭐⭐⭐⭐</td></tr>
+    <tr><td><b>Open edX + AI Extensions</b></td><td>Global</td><td>Open LMS + AI tutor + course creator</td><td>✅</td><td>Open, customisable (NSDC partnership)</td><td>Not govt-specific</td><td>⭐⭐⭐⭐</td></tr>
+    <tr><td><b>DoD MilGPT / CDAO</b></td><td>US</td><td>Internal GenAI for 3M personnel</td><td>✅</td><td>Massive govt scale</td><td>Defense-specific</td><td>⭐⭐⭐</td></tr>
+    <tr><td><b>GovTech Singapore</b></td><td>SG</td><td>Civil service capability platform</td><td>✅</td><td>Tight HR integration</td><td>Closed</td><td>⭐⭐⭐</td></tr>
+    <tr><td><b>GOV.UK Civil Service Learning</b></td><td>UK</td><td>Mandatory role-based learning</td><td>⚠️</td><td>Policy-grade</td><td>Static, not AI</td><td>⭐⭐</td></tr>
+  </table></div>
+
+  <h3>Patterns</h3>
+  <div class="grid g3">
+    <div class="card"><h5>✅ Commodity now</h5><p>Skill graphs/ontologies · skill inference · AI tutors (RAG chat) · adaptive difficulty · auto-quiz from text (research-proven).</p></div>
+    <div class="card"><h5>🚀 Genuinely differentiated</h5><p>Govt-specific competency ontology · doc→quiz with statistical awareness · real-time competency score + APAR link · coding sandbox + R/Python/Stata · multilingual AI tutor.</p></div>
+    <div class="card"><h5>🌍 World still struggles</h5><p>Hallucinated MCQs · cold start · competency frameworks that don't drift · explainability · HR integration · public-sector trust &amp; privacy.</p></div>
+  </div>
+</section>
+
+<!-- ============ PHASE 5 ============ -->
+<section class="ph" id="p5">
+  <div class="ph-head"><div class="ph-num">P5</div><div><div class="ph-title">India-Specific Landscape</div><div class="ph-tag">iGOT · NSSTA · MoSPI · players</div></div></div>
+
+  <div class="grid g4">
+    <div class="card"><h5>✅ ALREADY EXISTS</h5><p>FRAC framework (DoPT) · iGOT course marketplace (5,600+) · AI Tutor/Sarthi (basic) · subtitles 11 langs · multi-stakeholder dashboards · APAR linkage mandate.</p></div>
+    <div class="card"><h5>⚠️ PARTIALLY SOLVED</h5><p>Skill-gap ID (nascent) · course recommendation (generic) · multilingual · workforce analytics (basic) · coding sandbox (hints only).</p></div>
+    <div class="card"><h5>❌ UNSOLVED</h5><p>MoSPI-specific competency ontology · document→MCQ from circulars/PPTs · coding sandbox for stats · predictive competency forecasting · adaptive difficulty · real-time APAR competency · sectoral deep layer below iGOT.</p></div>
+    <div class="card"><h5>🔗 INTEGRATION + AI + UX GAPS</h5><p>No reference vertical in iGOT. AI = operational (moderation/tags), not transformative. UX = government-portal-plain (judges: "feels 2014").</p></div>
+  </div>
+
+  <div class="co a"><span class="ic">KEY INSIGHT</span><div><b>iGOT is horizontal; PS 26101 asks for a MoSPI vertical.</b> Integration gap = opportunity. A demonstrably-better ministry vertical is exactly what Mission Karmayogi needs as reference implementation.</div></div>
+
+  <h3>Why hasn't this been solved?</h3>
+  <ul>
+    <li>iGOT horizontal by design — verticals must be built separately (Tarento case study).</li>
+    <li>Govt procurement cycles slow (5-7 yr RFPs).</li>
+    <li>Public-sector AI needs explainability + safety.</li>
+    <li>Statistical domain niche — commercial AI vendors ignore it.</li>
+    <li>Attrition crisis only surfaced 2024-26.</li>
+    <li>"Coding sandbox for statistical officers" = bespoke requirement.</li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 6 ============ -->
+<section class="ph" id="p6">
+  <div class="ph-head"><div class="ph-num">P6</div><div><div class="ph-title">Previous SIH / Hackathon Landscape</div><div class="ph-tag">Patterns from winners & finalists</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Project</th><th>Year</th><th>Competition</th><th>Problem</th><th>Solution</th><th>Weakness / Lesson</th></tr>
+    <tr><td><b>INNOV8_01</b></td><td>2024</td><td>SIH (winner)</td><td>Social Justice &amp; Empowerment (SIH1714)</td><td>AI + web solution</td><td>Winners = deep problem framing, working demo, gov-aligned</td></tr>
+    <tr><td><b>Typewriter-II (IIIT Manipur)</b></td><td>2024</td><td>SIH (winner)</td><td>Regional gov problem</td><td>Localized solution</td><td>Regional relevance + usability matters</td></tr>
+    <tr><td><b>LPU team (7th edition)</b></td><td>2024</td><td>SIH Grand Finale</td><td>One of 186 software PS</td><td>Multi-stack app</td><td>Finalists = polished demo + judge Q&A prep</td></tr>
+    <tr><td><b>D.J. Sanghvi (5 winning teams)</b></td><td>2024</td><td>SIH</td><td>Various ministries</td><td>AI/web/mobile</td><td>Strong teams know ministry domain deeply</td></tr>
+  </table></div>
+
+  <h3>Common SIH Patterns (what winners do)</h3>
+  <ul>
+    <li><b>Ministry-domain depth</b> beats generic tech.</li>
+    <li><b>Live demo with real data</b> beats slides.</li>
+    <li><b>Working MVP</b> with honest limitations → judges trust.</li>
+    <li><b>Scalability + adoption story</b> = tie-breaker.</li>
+    <li><b>Judges punish</b>: shallow AI (chatbot wrapper), no evidence, no integration reality.</li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 7 ============ -->
+<section class="ph" id="p7">
+  <div class="ph-head"><div class="ph-num">P7</div><div><div class="ph-title">GitHub Intelligence</div><div class="ph-tag">Building blocks we can actually use</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Repo</th><th>What it is</th><th>Stack</th><th>Reuse for us?</th></tr>
+    <tr><td><b>Ganlak/mcqgenerator</b></td><td>PDF → MCQ extraction, Streamlit UI</td><td>Python, Streamlit, LangChain-ish</td><td>✅ Reference for doc→quiz pipeline</td></tr>
+    <tr><td><b>ErfanShm/knight-mcq</b></td><td>Knowledge-graph MCQ generation + adaptive difficulty (CPAL 2026, has PyPI)</td><td>Python 3.11+, KG</td><td>✅ Adaptive difficulty approach</td></tr>
+    <tr><td><b>openedx/openedx-ai-extensions</b></td><td>AI plugins for Open edX (tutor, course creator, LLM processor)</td><td>Python / Django</td><td>✅ Learn architecture; NSDC partner</td></tr>
+    <tr><td><b>judge0/judge0</b></td><td>Sandboxed code execution API (CE)</td><td>Docker, Rails, isolated boxes</td><td>✅ Coding sandbox (self-host possible)</td></tr>
+    <tr><td><b>RAG teaching assistants (multiple)</b></td><td>Lecture-video RAG Q&amp;A, document tutor</td><td>Py/JS, vector DBs</td><td>✅ Pattern for AI tutor</td></tr>
+    <tr><td><b>bhashini-dibd/ulca</b></td><td>Bhashini ULCA — Indian language NLP/MT</td><td>Open</td><td>✅ Multilingual layer</td></tr>
+    <tr><td><b>genieincodebottle/parsemypdf</b></td><td>PDF parsing: Docling, LlamaParse, PyMuPDF, PDFPlumber</td><td>Python</td><td>✅ Document intake comparison</td></tr>
+  </table></div>
+
+  <div class="co r"><span class="ic">LICENSE</span><div>Check licenses before copying (MIT/Apache ok; GPL cautions). Never ship code without license review — judges ask.</div></div>
+</section>
+
+<!-- ============ PHASE 8 ============ -->
+<section class="ph" id="p8">
+  <div class="ph-head"><div class="ph-num">P8</div><div><div class="ph-title">Technical Landscape</div><div class="ph-tag">Kaunsi tech practically kaam karti hai?</div></div></div>
+
+  <h3>Difficulty-Ranked Practical Tech</h3>
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Task</th><th>Approach</th><th>Difficulty</th><th>Notes</th></tr>
+    <tr><td>Course/topic similarity</td><td>Embeddings + ANN (vector DB)</td><td><span class="tag green">EASY</span></td><td>Proven; deterministic-ish</td></tr>
+    <tr><td>Doc→MCQ</td><td>Chunk → LLM with structured prompt → validate (QA pairs)</td><td><span class="tag yellow">MEDIUM</span></td><td>Needs quality filter; RAG grounded</td></tr>
+    <tr><td>Competency inference</td><td>Rule + LLM extraction + skill taxonomy mapping</td><td><span class="tag yellow">MEDIUM</span></td><td>Human-in-loop for trust</td></tr>
+    <tr><td>Personalized path</td><td>Graph (competency→course) + scoring</td><td><span class="tag yellow">MEDIUM</span></td><td>Deterministic core + AI enrich</td></tr>
+    <tr><td>Adaptive difficulty</td><td>IRT (Item Response Theory) or rules; KG-based calibration</td><td><span class="tag red">HARD</span></td><td>knight-mcq shows one path</td></tr>
+    <tr><td>Predictive workforce forecasting</td><td>Time-series / trend on competency scores</td><td><span class="tag red">HARD</span></td><td>Marketing risk; MVP: simple trends</td></tr>
+    <tr><td>Auto coder feedback</td><td>Sandbox + test cases + LLM hints</td><td><span class="tag red">HARD</span></td><td>Judge0 + typed exercises achievable</td></tr>
+  </table></div>
+
+  <div class="co r"><span class="ic">OVERENGINEERING</span><div><b>Avoid:</b> full KG for MVP · item-response-theory math · multi-agent swarm · transformer fine-tuning · "predictive workforce planning" claims. Start rules + embeddings + one LLM; add complexity only if demo needs it.</div></div>
+</section>
+
+<!-- ============ PHASE 9 ============ -->
+<section class="ph" id="p9">
+  <div class="ph-head"><div class="ph-num">P9</div><div><div class="ph-title">Data & API Intelligence</div><div class="ph-tag">Realistic MVP without private gov data?</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Dataset/API</th><th>Source</th><th>Public?</th><th>API?</th><th>MVP?</th><th>Production</th></tr>
+    <tr><td>iGOT course catalog / learning data</td><td>igotkarmayogi.gov.in</td><td>⚠️ Partial (public TOC, courses)</td><td>❌ Not public REST</td><td>✅ sample/mock</td><td>Authorization needed</td></tr>
+    <tr><td>FRAC dictionaries</td><td>istm.gov.in / DoPT PDF</td><td>✅ Public PDF</td><td>❌</td><td>✅ Scrape → CSV</td><td>✅ Baseline ontology</td></tr>
+    <tr><td>MoSPI open datasets (NSS, ASI, CPI…)</td><td>mospi.gov.in / data.gov.in</td><td>✅</td><td>✅ data.gov.in</td><td>✅ Real content</td><td>✅</td></tr>
+    <tr><td>Existing NSSTA training calendar</td><td>mospi.gov.in/training</td><td>✅ Public</td><td>❌ (page)</td><td>✅ scrape</td><td>Ongoing maintenance</td></tr>
+    <tr><td>Statistical competency frameworks</td><td>OECD, UNSD, ESS (Eurostat)</td><td>✅</td><td>❌ docs</td><td>✅ align taxonomy</td><td>✅ alignment reference</td></tr>
+    <tr><td>Bhashini (translation)</td><td>bhashini.gov.in / ULCA</td><td>✅</td><td>✅</td><td>✅ multilingual demo</td><td>✅</td></tr>
+    <tr><td>Open edX (host or fork)</td><td>openedx.org</td><td>✅ OSS</td><td>✅ self-host</td><td>✅</td><td>Optional base</td></tr>
+    <tr><td>LLM APIs (OmniRoute/OpenRouter/etc.)</td><td>various</td><td>✅</td><td>✅</td><td>✅ RAG/quiz</td><td>Requires sovereign/on-prem for prod</td></tr>
+  </table></div>
+
+  <div class="co g"><span class="ic">ANSWER</span><div><b>Yes — fully realistic MVP without private gov data:</b> synthetic employee profiles, mock iGOT integration layer (RFC over public TOC), real MoSPI datasets as learning content, FRAC as ontology seed. Production needs govt approvals for user data + iGOT APIs.</div></div>
+</section>
+
+<!-- ============ PHASE 10 ============ -->
+<section class="ph" id="p10">
+  <div class="ph-head"><div class="ph-num">P10</div><div><div class="ph-title">User & Workflow Research</div><div class="ph-tag">Employee vs Admin journeys</div></div></div>
+
+  <h3>Employee — Current vs Ideal</h3>
+  <div class="grid g2">
+    <div class="card"><h5>😣 Current Journey</h5><p>Profile (static APAR) → Manual search → Generic course → Video → Static quiz → Certificate → No smart feedback. <b>Friction:</b> discovery, no personalization, no reassessment loop.</p></div>
+    <div class="card"><h5>✨ Ideal Journey</h5><p>Profile + role mapping → AI assessment → Skill-gap report → Personalized path → Microlearning + coding sandbox → Auto quiz from uploads → Feedback → Reassessment → competency score updates in real time.</p></div>
+  </div>
+
+  <h3>Admin — Current vs Ideal</h3>
+  <div class="grid g2">
+    <div class="card"><h5>😣 Current</h5><p>Organization static lists → annual reports → no skill-gap map → manual training nomination → Excel analytics.</p></div>
+    <div class="card"><h5>✨ Ideal</h5><p>Live workforce competency map → team gap heatmap → auto training recommendations → progress analytics → <b>predictive workforce planning</b> (what skills will we need next?).</p></div>
+  </div>
+</section>
+
+<!-- ============ PHASE 11 ============ -->
+<section class="ph" id="p11">
+  <div class="ph-head"><div class="ph-num">P11</div><div><div class="ph-title">Root Cause Analysis</div><div class="ph-tag">5 Why + Fishbone → Top bottlenecks</div></div></div>
+
+  <h3>5 WHY — "Why is training ineffective?"</h3>
+  <div class="tblwrap"><table class="mini">
+    <tr><th>#</th><th>Answer</th></tr>
+    <tr><td>Why 1</td><td>Officers take wrong/irrelevant courses.</td></tr>
+    <tr><td>Why 2</td><td>Course discovery is generic; no role context.</td></tr>
+    <tr><td>Why 3</td><td>No competency profile per role (MoSPI-specific).</td></tr>
+    <tr><td>Why 4</td><td>Competency data never collected or updated systematically.</td></tr>
+    <tr><td>Why 5</td><td><b>No integrated competency→learning→assessment data loop</b> — iGOT is horizontal; MoSPI vertical missing.</td></tr>
+  </table></div>
+
+  <h3>TOP 5 ROOT BOTTLENECKS</h3>
+  <ul>
+    <li><b>1. No MoSPI role-competency dictionary</b> — everything downstream (mapping, gap, path) depends on this.</li>
+    <li><b>2. No data loop</b> between assessment, learning records, and job outcomes.</li>
+    <li><b>3. Shallow recommendation logic</b> — keyword match instead of semantic/competency match.</li>
+    <li><b>4. Manual assessment authoring</b> — no auto-MCQ from uploaded materials.</li>
+    <li><b>5. Visibility deficit</b> — supervisors/HR can't see skill gaps at team/org level.</li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 12 ============ -->
+<section class="ph" id="p12">
+  <div class="ph-head"><div class="ph-num">P12</div><div><div class="ph-title">Gap Analysis</div><div class="ph-tag">Current vs desired vs tech vs gov requirements</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Gap</th><th>Current</th><th>Desired</th><th>Impact</th><th>Feasibility</th><th>Differentiation</th></tr>
+    <tr><td><b>Competency ontology</b></td><td>Generic FRAC</td><td>MoSPI role-level dictionary</td><td>★★★</td><td>Easy</td><td>High</td></tr>
+    <tr><td><b>Skill-gap detection</b></td><td>Manual/self-report</td><td>AI assessment + inferred</td><td>★★★</td><td>Medium</td><td>High</td></tr>
+    <tr><td><b>Personalized path</b></td><td>Keyword search</td><td>Semantic + competency-graph</td><td>★★★</td><td>Medium</td><td>High</td></tr>
+    <tr><td><b>Doc→quiz</b></td><td>None</td><td>Auto MCQ from uploads</td><td>★★★</td><td>Medium</td><td>High</td></tr>
+    <tr><td><b>Coding sandbox</b></td><td>None</td><td>Python/R in-browser</td><td>★★</td><td>Medium</td><td>High</td></tr>
+    <tr><td><b>Admin intelligence</b></td><td>Static dashboards</td><td>Heatmap + trends + forecast</td><td>★★★</td><td>Medium</td><td>High</td></tr>
+    <tr><td><b>iGOT integration</b></td><td>None public</td><td>Mock/adapter + SSO</td><td>★★</td><td>Medium</td><td>High</td></tr>
+    <tr><td><b>Multilingual</b></td><td>Subtitles</td><td>Hindi + regional AI tutor</td><td>★★</td><td>Medium</td><td>Medium</td></tr>
+    <tr><td><b>API/security</b></td><td>—</td><td>RBAC, audit, sovereign LLM option</td><td>★★★</td><td>Medium</td><td>Medium</td></tr>
+  </table></div>
+
+  <h3>TOP 10 GAPS (Impact × Feasibility × Differentiation)</h3>
+  <ul>
+    <li>1. MoSPI role-competency dictionary</li>
+    <li>2. AI skill-gap detection</li>
+    <li>3. Document→MCQ engine</li>
+    <li>4. Semantic personalized course path</li>
+    <li>5. Admin team competency heatmap</li>
+    <li>6. Coding sandbox (Python/R)</li>
+    <li>7. iGOT adapter layer</li>
+    <li>8. Real-time competency score (APAR-ready)</li>
+    <li>9. Multilingual AI tutor</li>
+    <li>10. Predictive workforce planning</li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 13 ============ -->
+<section class="ph" id="p13">
+  <div class="ph-head"><div class="ph-num">P13</div><div><div class="ph-title">Competitor Weakness Analysis</div><div class="ph-tag">Challenge everyone, find neglected features</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Solution</th><th>Fails at</th><th>Manual/Expensive</th><th>What we can do better</th></tr>
+    <tr><td><b>iGOT Karmayogi</b></td><td>No MoSPI vertical, generic recs, no doc→quiz, no sandbox</td><td>Course authoring manual</td><td>Domain layer, deeper AI, auto-quiz</td></tr>
+    <tr><td><b>Eightfold</b></td><td>Not domain-specific, closed, expensive, US-centric</td><td>Implementation heavy, high license</td><td>Gov-specific, open taxonomy, low cost</td></tr>
+    <tr><td><b>Workday/Degreed</b></td><td>Generic enterprise, no gov APAR, no Hindi</td><td>High cost, heavy integration</td><td>Indian gov workflows, Bhashini multilingual</td></tr>
+    <tr><td><b>Open edX</b></td><td>No competency engine, no MCQ-gen from uploads</td><td>Admin heavy</td><td>Thin AI layer on top</td></tr>
+    <tr><td><b>Generic AI LMS startups</b></td><td>No gov integration, no FRAC ontology</td><td>Scaling support costly</td><td>Mission-Karmayogi aligned, RBAC, audit logs</td></tr>
+  </table></div>
+
+  <div class="co g"><span class="ic">NEGLECTED</span><div><b>Neglected features (more valuable):</b> auto-generated quizzes from uploaded gov documents, competency score linked to APAR, statistical domain coding sandbox, team-level gap heatmaps, sovereign AI option, Hindi/regional AI tutor, step-by-step explainability of recommendations.</div></div>
+</section>
+
+<!-- ============ PHASE 14 ============ -->
+<section class="ph" id="p14">
+  <div class="ph-head"><div class="ph-num">P14</div><div><div class="ph-title">SIH Judge Mindset</div><div class="ph-tag">Hundreds of teams got the same PS</div></div></div>
+
+  <h3>Verified vs Likely</h3>
+  <div class="grid g2">
+    <div class="card"><h5>✅ VERIFIED OFFICIAL</h5><p>SIH = problem-solving + innovation + impact + feasibility (officially emphasized). Demo at nodal center, judged round by round.</p></div>
+    <div class="card"><h5>🔮 LIKELY PREFERENCES</h5><p>Working demo &gt; slides · domain depth &gt; buzzwords · integration realism &gt; "we connect to iGOT via magic" · honest limitations &gt; overclaiming.</p></div>
+  </div>
+
+  <h3>Why could our team lose?</h3>
+  <ul>
+    <li>Generic LMS pitch — judges have seen it 200 times.</li>
+    <li>Chatbot wrapper — "where's the MoSPI depth?"</li>
+    <li>Fake iGOT integration — judge asks one API question, we collapse.</li>
+    <li>No real MCQ demo — the killer feature must work live.</li>
+    <li>No stats domain understanding — sampling/R/SDG jargon empty.</li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 15 ============ -->
+<section class="ph" id="p15">
+  <div class="ph-head"><div class="ph-num">P15</div><div><div class="ph-title">500-Team Simulation</div><div class="ph-tag">Predict the competition</div></div></div>
+
+  <div class="grid g3">
+    <div class="card"><h5>🔴 RED OCEAN (very common)</h5><p>AI LMS clone · chatbot wrapper · course recommender with cosine similarity · generic skill-gap UI · PDF→quiz (shallow). <b>Judge appeal:</b> low-medium. <b>Saturation:</b> high.</p></div>
+    <div class="card"><h5>🟡 YELLOW OCEAN</h5><p>iGOT mock integration + dashboards · RAG tutor · MCQ gen with evaluation · microlearning modules. <b>Judge appeal:</b> medium. <b>Saturation:</b> medium.</p></div>
+    <div class="card"><h5>🟢 GREEN OCEAN</h5><p>MoSPI competency ontology + real datasets · coding sandbox (Judge0) · team heatmap for admins · Hindi AI tutor. <b>Judge appeal:</b> high.</p></div>
+    <div class="card"><h5>🔵 BLUE OCEAN</h5><p>Predictive workforce planning · APAR-linked competency score · sovereign/on-prem LLM story · FRAC-aligned role model with explainability. <b>Judge appeal:</b> very high. <b>Risk:</b> overclaim.</p></div>
+  </div>
+
+  <h3>5 Most Likely Competing Ideas</h3>
+  <ol>
+    <li>Generic AI LMS with chatbot (red)</li>
+    <li>PDF→MCQ generator (red)</li>
+    <li>Cosine-similarity course recommender (red)</li>
+    <li>iGOT-lite dashboard (yellow)</li>
+    <li>RAG tutor for statistical officers (yellow)</li>
+  </ol>
+
+  <h3>5 Ideas We Should Avoid</h3>
+  <ol>
+    <li>Chatbot wrapper only — zero differentiation</li>
+    <li>Full LMS from scratch — reinventing Moodle/edX</li>
+    <li>Heavy KG + IRT math — overengineering, demo risk</li>
+    <li>Predictive workforce forecasting claims — overclaim risk</li>
+    <li>Public-access citizen platform — wrong audience (PS = officials)</li>
+  </ol>
+</section>
+
+<!-- ============ PHASE 16 ============ -->
+<section class="ph" id="p16">
+  <div class="ph-head"><div class="ph-num">P16</div><div><div class="ph-title">Innovation Opportunity Map</div><div class="ph-tag">Score & shortlist</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Idea</th><th>Impact</th><th>Feas</th><th>Novel</th><th>Demo</th><th>SIH</th></tr>
+    <tr><td>MoSPI competency ontology + role map</td><td>9</td><td>8</td><td>8</td><td>8</td><td><b>9</b></td></tr>
+    <tr><td>Doc→MCQ engine with quality filter</td><td>9</td><td>8</td><td>7</td><td>10</td><td><b>9</b></td></tr>
+    <tr><td>Coding sandbox (Judge0) + stats exercises</td><td>8</td><td>7</td><td>8</td><td>9</td><td><b>8</b></td></tr>
+    <tr><td>Team competency heatmap (admin)</td><td>9</td><td>8</td><td>7</td><td>8</td><td><b>8</b></td></tr>
+    <tr><td>Hindi/regional AI tutor (Bhashini)</td><td>8</td><td>7</td><td>7</td><td>8</td><td><b>7</b></td></tr>
+    <tr><td>APAR-ready competency score</td><td>9</td><td>6</td><td>8</td><td>7</td><td><b>7</b></td></tr>
+    <tr><td>Predictive workforce planning</td><td>9</td><td>4</td><td>9</td><td>6</td><td><b>6</b></td></tr>
+    <tr><td>Full KG + IRT adaptive</td><td>8</td><td>3</td><td>7</td><td>5</td><td><b>5</b></td></tr>
+  </table></div>
+
+  <h3>TOP 10 OPPORTUNITIES</h3>
+  <ul>
+    <li>1. MoSPI role-competency ontology (seed)</li>
+    <li>2. Auto-MCQ from uploaded materials</li>
+    <li>3. Semantic personalized learning path</li>
+    <li>4. Coding sandbox with stats exercises</li>
+    <li>5. Team competency heatmap for admins</li>
+    <li>6. Real-time competency score</li>
+    <li>7. Hindi/regional AI tutor</li>
+    <li>8. iGOT adapter + SSO mock</li>
+    <li>9. RAG assistant over MoSPI corpus</li>
+    <li>10. Progress analytics + trend lines</li>
+  </ol>
+</section>
+
+<!-- ============ PHASE 17 ============ -->
+<section class="ph" id="p17">
+  <div class="ph-head"><div class="ph-num">P17</div><div><div class="ph-title">AI Opportunity Map</div><div class="ph-tag">AI must solve a real problem</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>AI Feature</th><th>Problem Solved</th><th>Value</th><th>Data</th><th>Complexity</th><th>Risk</th><th>Build?</th></tr>
+    <tr><td>Skill-gap assessment</td><td>Know where officer stands</td><td>High</td><td>profile + quiz answers</td><td>Med</td><td>Low-Med</td><td>✅ YES</td></tr>
+    <tr><td>Semantic course rec</td><td>Right course, right time</td><td>High</td><td>course catalog + ontology</td><td>Low-Med</td><td>Low</td><td>✅ YES</td></tr>
+    <tr><td>Doc→MCQ generation</td><td>Instant quizzes from uploads</td><td>High</td><td>uploaded PDF/PPT</td><td>Med</td><td>Med (hallucination)</td><td>✅ YES (with filter)</td></tr>
+    <tr><td>RAG assistant</td><td>Ask questions on material</td><td>Med-High</td><td>corpus + embeddings</td><td>Med</td><td>Med</td><td>✅ YES</td></tr>
+    <tr><td>Adaptive difficulty</td><td>Don't bore/overwhelm</td><td>Med</td><td>responses</td><td>High</td><td>Med</td><td>⚠️ later</td></tr>
+    <tr><td>Predictive forecasting</td><td>Future skill needs</td><td>High</td><td>history</td><td>High</td><td>High</td><td>❌ NO (MVP)</td></tr>
+    <tr><td>Auto-coding feedback</td><td>Practice stats coding</td><td>Med</td><td>Judge0 + tests</td><td>High</td><td>Med</td><td>⚠️ stretch</td></tr>
+    <tr><td>Full KG + IRT</td><td>Precision adaptation</td><td>Med</td><td>large data</td><td>Very High</td><td>High</td><td>❌ NO</td></tr>
+  </table></div>
+
+  <div class="co r"><span class="ic">DON'T BUILD</span><div>Predictive workforce forecasting, full IRT/KG adaptation, auto-coding-grader as core — all need data/scale we don't have. Ship them as roadmap slides, not demo promises.</div></div>
+</section>
+
+<!-- ============ PHASE 18 ============ -->
+<section class="ph" id="p18">
+  <div class="ph-head"><div class="ph-num">P18</div><div><div class="ph-title">Technical Architecture</div><div class="ph-tag">3 architectures — pick your lane</div></div></div>
+
+  <div class="grid g3">
+    <div class="card"><h5>A — SAFE MVP</h5><p><b>FE:</b> Next.js + Tailwind<br><b>BE:</b> FastAPI + SQLite→Postgres<br><b>AI:</b> one LLM API, embeddings<br><b>Quiz:</b> chunk + prompt + filter<br><b>Sandbox:</b> client-side pyodide (no infra)<br><b>Integration:</b> mock iGOT adapter</p></div>
+    <div class="card"><h5>B — STRONG COMPETITOR</h5><p><b>FE:</b> Next.js + shadcn + charts<br><b>BE:</b> FastAPI, Postgres + pgvector<br><b>AI:</b> LLM + RAG (embedding store)<br><b>Quiz:</b> pipeline w/ QA validation<br><b>Sandbox:</b> Judge0 self-host (Docker)<br><b>Auth/RBAC:</b> JWT + roles<br><b>iGOT:</b> adapter + SSO mock</p></div>
+    <div class="card"><h5>C — AMBITIOUS WINNER</h5><p>All of B <b>+</b> Bhashini multilingual tutor <b>+</b> competency graph (Neo4j or pg-graph) <b>+</b> audit log + immutable records <b>+</b> sovereign LLM provider abstraction (OpenRouter → on-prem switch) <b>+</b> analytics events pipeline <b>+</b> progressive web app. <i>Ship C's story, build B's core, demo A/B features live.</i></p></div>
+  </div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Architecture</th><th>Complexity</th><th>Cost</th><th>Buildability</th><th>Demo Impact</th><th>Scalability</th><th>Risk</th></tr>
+    <tr><td>A — SAFE</td><td>Low</td><td>Low</td><td>High</td><td>Medium</td><td>Medium</td><td>Low</td></tr>
+    <tr><td>B — STRONG</td><td>Med</td><td>Med</td><td>High</td><td>High</td><td>High</td><td>Med</td></tr>
+    <tr><td>C — WINNER</td><td>High</td><td>Med-High</td><td>Med</td><td>Very High</td><td>High</td><td>Med-High</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ PHASE 19 ============ -->
+<section class="ph" id="p19">
+  <div class="ph-head"><div class="ph-num">P19</div><div><div class="ph-title">MVP vs Production</div><div class="ph-tag">Prototype assumptions ≠ production reality</div></div></div>
+
+  <div class="grid g2">
+    <div class="card"><h5>🎯 SIH MVP (36-48h)</h5><p>Role ↔ competency map seeded · skill-gap computed from quiz + self-rating · personalized path (semantic match) · upload PDF → MCQ in &lt;60s · take quiz → score updates competency · admin heatmap · mock iGOT login + sample data.</p></div>
+    <div class="card"><h5>🏛 PRODUCTION</h5><p>Real workforce data (with consent + DPDP compliance) · iGOT API integration via MOU · FRAC/MoSPI ontology governance · sovereign LLM on MeghRaj/NIC · SSO (eHRMS/iGOT SSO) · RBAC + audit + DPIIT-grade security review · A/B adaptive learning · APAR data exchange.</p></div>
+  </div>
+
+  <div class="co a"><span class="ic">RULE</span><div>Demo mein synthetic data + mock integration is fine — <b>say so clearly</b>. Judges punish overclaiming more than honest limits.</div></div>
+</section>
+
+<!-- ============ PHASE 20 ============ -->
+<section class="ph" id="p20">
+  <div class="ph-head"><div class="ph-num">P20</div><div><div class="ph-title">Buildability</div><div class="ph-tag">Realistic effort, no fantasy timelines</div></div></div>
+
+  <div class="grid g4">
+    <div class="card"><h5>✅ MUST HAVE</h5><p>Competency map · skill-gap engine · course rec · doc→MCQ · quiz + score · dashboards · mock iGOT</p></div>
+    <div class="card"><h5>🟡 SHOULD HAVE</h5><p>Coding sandbox (Pyodide/Judge0) · RAG assistant · heatmap · multilingual basics</p></div>
+    <div class="card"><h5>🟢 NICE TO HAVE</h5><p>Predictive trends · APAR export · SSO real · on-prem LLM switch</p></div>
+    <div class="card"><h5>⛔ DON'T BUILD</h5><p>Full LMS · IRT/KG adaptive · citizen portal · custom LLM training</p></div>
+  </div>
+
+  <h3>Effort (3-4 person team, honest)</h3>
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Piece</th><th>Effort</th><th>Dependency</th></tr>
+    <tr><td>Ontology + seed data (roles/competencies/courses)</td><td>6-10 hrs prep</td><td>FRAC/MoSPI docs, can pre-build before hackathon</td></tr>
+    <tr><td>Backend + auth + RBAC</td><td>6-8 hrs</td><td>—</td></tr>
+    <tr><td>Recommendation (semantic + rule)</td><td>4-6 hrs</td><td>embeddings + ontology</td></tr>
+    <tr><td>Doc→MCQ pipeline</td><td>6-10 hrs</td><td>LLM API + chunking + filter</td></tr>
+    <tr><td>Coding sandbox (Pyodide) </td><td>3-5 hrs</td><td>client-side, no infra</td></tr>
+    <tr><td>Dashboards + heatmap</td><td>4-6 hrs</td><td>backend data</td></tr>
+    <tr><td>Polish UI + demo script</td><td>4-6 hrs</td><td>all above</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ PHASE 21 ============ -->
+<section class="ph" id="p21">
+  <div class="ph-head"><div class="ph-num">P21</div><div><div class="ph-title">Business / Deployment Opportunity</div><div class="ph-tag">Can it become real?</div></div></div>
+
+  <ul>
+    <li><b>B2G:</b> MoSPI → then other ministries (Health, Agriculture, Finance stats wings) → state DES → PSUs.</li>
+    <li><b>Who pays:</b> ministry budget/capacity-building programs, CBC/Mission Karmayogi vertical budget, NSSTA, state statistical directorates.</li>
+    <li><b>What they pay for:</b> competency intelligence + auto-assessments + workforce planning (recurring license/SaaS on Gi Cloud).</li>
+    <li><b>Same engine outside stats:</b> YES — competency/learning engine is domain-agnostic; statistics is just the first vertical (health, revenue, education follow).</li>
+    <li><b>Startup path:</b> spin-off as govtech startup (like other SIH alumni), or hand over to Karmayogi Bharat as reference vertical.</li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 22 ============ -->
+<section class="ph" id="p22">
+  <div class="ph-head"><div class="ph-num">P22</div><div><div class="ph-title">Security / Privacy / Govt Constraints</div><div class="ph-tag">MVP vs production risks</div></div></div>
+
+  <div class="grid g2">
+    <div class="card"><h5>🎯 MVP risks</h5><p>Synthetic data only · don't store real PII · basic JWT + RBAC · rate-limit LLM calls · sanitize uploads (size/type/virus scan) · keep API keys server-side · prompt-injection guards on uploaded docs.</p></div>
+    <div class="card"><h5>🏛 Production risks</h5><p>DPDP Act compliance · consent for workforce data · SSO/eHRMS integration · audit logs (immutable) · sovereign LLM on MeghRaj/NIC (no foreign cloud) · model explainability · AI hallucination policy (human review for MCQs) · IRT on sensitive data.</p></div>
+  </div>
+</section>
+
+<!-- ============ PHASE 23 ============ -->
+<section class="ph" id="p23">
+  <div class="ph-head"><div class="ph-num">P23</div><div><div class="ph-title">Failure Modes</div><div class="ph-tag">Assume deployed — how can it fail?</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Failure</th><th>Prob</th><th>Impact</th><th>Detection</th><th>Mitigation</th></tr>
+    <tr><td>Bad recommendation</td><td>Med</td><td>Med</td><td>low engagement</td><td>feedback loop + fallback rules</td></tr>
+    <tr><td>Hallucinated MCQs</td><td>Med-High</td><td>High</td><td>quiz quality review</td><td>answer grounding + human approve + difficulty filter</td></tr>
+    <tr><td>Wrong skill assessment</td><td>Med</td><td>High</td><td>score drift</td><td>multi-source (quiz+self+manager) + calibration</td></tr>
+    <tr><td>API/iGOT failure</td><td>Med</td><td>Med</td><td>integration errors</td><td>adapter + graceful fallback + offline queue</td></tr>
+    <tr><td>Adoption failure (officers don't use)</td><td>High</td><td>High</td><td>DAU collapse</td><td>mandate integration (APAR), UX, mobile, Hindi</td></tr>
+    <tr><td>Security breach</td><td>Low</td><td>Critical</td><td>audit</td><td>RBAC+encryption+gov-cloud+pentest</td></tr>
+    <tr><td>Scalability spike</td><td>Low</td><td>Med</td><td>latency</td><td>queues, caching, containerized services</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ PHASE 24 ============ -->
+<section class="ph" id="p24">
+  <div class="ph-head"><div class="ph-num">P24</div><div><div class="ph-title">Best Possible Solution</div><div class="ph-tag">Synthesized — one strongest product</div></div></div>
+
+  <div class="grid g2">
+    <div class="card"><h5>🏷 Product Name</h5><p class="big">SankhyikAI — <span style="color:var(--green)">"Jankari → Kaushal → Karya"</span></p><p>(Sankhyik = statistical · AI · Hindi-friendly. Alternatives: "Aadhaar of Skills"? No — <b>SankhyikAI</b> or <b>KaushalSetu</b> or <b>AnkAI</b>.)</p></div>
+    <div class="card"><h5>📣 One-line Pitch</h5><p><b>"India ka statistical workforce competence-pe seekhe — AI gap detector, iGOT-integrated path, uploaded PDF se 60-second MCQ."</b></p></div>
+  </div>
+
+  <h3>Core Workflow</h3>
+  <div class="flow">
+    <div class="step"><span class="s">1</span><b>Role Profile</b><small>SSO/iGOT mock</small></div>
+    <div class="step ai"><span class="s">2</span><b>AI Assessment</b><small>quiz + self-rating</small></div>
+    <div class="step ai"><span class="s">3</span><b>Skill-Gap Map</b><small>vs role ontology</small></div>
+    <div class="step ai"><span class="s">4</span><b>Personal Path</b><small>semantic recs</small></div>
+    <div class="step"><span class="s">5</span><b>Microlearn + Sandbox</b><small>Python/R</small></div>
+    <div class="step ai"><span class="s">6</span><b>Upload → MCQs</b><small>auto quiz</small></div>
+    <div class="step ai"><span class="s">7</span><b>Score Update</b><small>competency delta</small></div>
+    <div class="step ai"><span class="s">8</span><b>Admin Heatmap</b><small>org view</small></div>
+  </div>
+
+  <h3>5-8 Major Features + Killer + Differentiator</h3>
+  <ul>
+    <li><b>1.</b> MoSPI role-competency ontology (FRAC-aligned)</li>
+    <li><b>2.</b> AI skill-gap detection (multi-source)</li>
+    <li><b>3.</b> Semantic personalized course path (iGOT-aware)</li>
+    <li><b>4.</b> <span class="tag purple">KILLER</span> Upload PDF/PPT → MCQ in 60s with QA filter + difficulty</li>
+    <li><b>5.</b> Coding sandbox (Pyodide / Judge0) for R/Python stats exercises</li>
+    <li><b>6.</b> Team competency heatmap + admin analytics</li>
+    <li><b>7.</b> Hindi/regional AI tutor (Bhashini)</li>
+    <li><b>8.</b> Progress tracking + APAR-ready competency score</li>
+    <li><b>Unique differentiator:</b> <i>MoSPI-domain competency intelligence layer</i> — not another LMS; a vertical brain on top of iGOT.</li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 25 ============ -->
+<section class="ph" id="p25">
+  <div class="ph-head"><div class="ph-num">P25</div><div><div class="ph-title">USP Analysis</div><div class="ph-tag">5+ USPs, pick the strongest</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>USP</th><th>Easy to explain?</th><th>Valuable?</th><th>Different?</th><th>Demonstrable?</th><th>Hard to copy?</th><th>PS-relevant?</th></tr>
+    <tr><td><b>Doc→MCQ in 60s</b></td><td>✅✅</td><td>✅✅</td><td>✅</td><td>✅✅</td><td>⚠️</td><td>✅✅</td></tr>
+    <tr><td>MoSPI competency ontology</td><td>⚠️</td><td>✅✅</td><td>✅✅</td><td>✅</td><td>✅✅</td><td>✅✅</td></tr>
+    <tr><td>Coding sandbox for stats</td><td>✅</td><td>✅✅</td><td>✅✅</td><td>✅✅</td><td>⚠️</td><td>✅✅</td></tr>
+    <tr><td>Team heatmap for admins</td><td>✅✅</td><td>✅✅</td><td>✅</td><td>✅</td><td>⚠️</td><td>✅</td></tr>
+    <tr><td>Hindi/regional AI tutor</td><td>✅✅</td><td>✅</td><td>✅</td><td>✅</td><td>⚠️</td><td>⚠️</td></tr>
+    <tr><td>APAR-ready competency score</td><td>✅</td><td>✅✅</td><td>✅✅</td><td>✅</td><td>✅✅</td><td>✅✅</td></tr>
+  </table></div>
+
+  <div class="co g"><span class="ic">STRONGEST USP</span><div><b>Doc→MCQ in 60 seconds + MoSPI-domain competency engine.</b> Other teams may build a quiz generator; almost none will build a FRAC-aligned MoSPI competency brain around it. Lead demo with upload→quiz; back it with ontology depth.</div></div>
+</section>
+
+<!-- ============ PHASE 26 ============ -->
+<section class="ph" id="p26">
+  <div class="ph-head"><div class="ph-num">P26</div><div><div class="ph-title">"Why Us?"</div><div class="ph-tag">10 angles, pick the strongest</div></div></div>
+
+  <ul>
+    <li>Most teams will build <b>an AI LMS</b>, but ours is different because <b>it's a competency intelligence layer with MoSPI-specific ontology</b>.</li>
+    <li>Most will build <b>a chatbot</b>, but ours is different because <b>AI is embedded in assessment→gap→path→quiz loop, not a side chat</b>.</li>
+    <li>Most will demo <b>a PDF-to-quiz toy</b>, but ours works because <b>MCQs are grounded + validated + tagged to competencies</b>.</li>
+    <li>Most will claim <b>iGOT integration</b>, but ours is different because <b>we show an adapter + honest mock + fallback story</b>.</li>
+    <li>Most will show <b>one user screen</b>, but ours shows <b>employee + admin + org heatmap</b>.</li>
+    <li>Most will be <b>English-only demo</b>, ours includes <b>Hindi/regional tutor</b>.</li>
+    <li>Most will be <b>slides-by-numbers</b>, ours is <b>live upload→quiz→score in 60 seconds</b>.</li>
+    <li>Most will ignore <b>APAR/career linkage</b>, ours exposes <b>competency score ready for APAR</b>.</li>
+    <li>Most will say <b>AI magic</b>, ours says <b>where AI helps, where rules do, and where humans approve</b>.</li>
+    <li>Most will demo <b>a prototype</b>, ours demonstrates <b>a path to production on Gi Cloud + sovereign LLM</b>.</li>
+  </ul>
+
+  <div class="co g"><span class="ic">STRONGEST</span><div><b>"Most teams will build an AI LMS with a chatbot; we built the competency brain for India's Official Statistical System — role ontology + gap engine + auto-quiz from your own documents, wired to iGOT."</b></div></div>
+</section>
+
+<!-- ============ PHASE 27 ============ -->
+<section class="ph" id="p27">
+  <div class="ph-head"><div class="ph-num">P27</div><div><div class="ph-title">Demo Strategy</div><div class="ph-tag">WOW moment + backup plan</div></div></div>
+
+  <h3>First 30 seconds</h3>
+  <p><b>Problem:</b> MoSPI ke 44% attrition-wale statistical officers ko static, generic training — skill gap dikhta nahi, quiz manually banate hain. <b>User:</b> Priya (JSO) + supervisor. <b>Existing weakness:</b> iGOT par 5600 courses par koi MoSPI-specific path nahi. <b>Our solution:</b> 60-second demo — upload karo, quiz aaya, gap dikha, path mila.</p>
+
+  <h3>Demo flow</h3>
+  <div class="flow">
+    <div class="step"><span class="s">1</span><b>Login (mock iGOT SSO)</b><small>2s</small></div>
+    <div class="step ai"><span class="s">2</span><b>AI assesses</b><small>role + quiz + self</small></div>
+    <div class="step ai"><span class="s">3</span><b>Skill-gap radar</b><small>visual</small></div>
+    <div class="step ai"><span class="s">4</span><b>Personal path</b><small>5 courses</small></div>
+    <div class="step"><span class="s">5</span><b>Upload PDF → MCQs</b><small>WOW ⚡ 60s</small></div>
+    <div class="step ai"><span class="s">6</span><b>Take quiz</b><small>answers</small></div>
+    <div class="step ai"><span class="s">7</span><b>Weak-topic insights</b><small>AI explains</small></div>
+    <div class="step ai"><span class="s">8</span><b>Competency score ↑</b><small>chart</small></div>
+    <div class="step ai"><span class="s">9</span><b>Admin heatmap</b><small>org</small></div>
+  </div>
+
+  <div class="co g"><span class="ic">WOW MOMENT</span><div><b>Upload a real MoSPI circular/PDF → 5 MCQs appear in &lt;60s → student answers → competency score visibly moves.</b> Do it live with a printable PDF on stage. That's the demo judges remember.</div></div>
+
+  <div class="co a"><span class="ic">BACKUP</span><div><b>Offline/API-fail plan:</b> pre-generated quiz cache · client-side Pyodide sandbox (no network) · static dashboards from seed data · fallback rule-based recommender (no LLM needed) · local embeddings. Demo must survive zero network.</div></div>
+</section>
+
+<!-- ============ PHASE 28 ============ -->
+<section class="ph" id="p28">
+  <div class="ph-head"><div class="ph-num">P28</div><div><div class="ph-title">Judge Q&A — 30 hard questions</div><div class="ph-tag">Answers + evidence + weak answers</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>#</th><th>Question</th><th>Strong Answer</th><th>Weak Answer</th></tr>
+    <tr><td>1</td><td>Why AI? Why not normal LMS?</td><td>AI does 3 things: assess skill gaps from sparse data, match semantic course→competency, generate grounded MCQs from documents</td><td>"AI is cool"</td></tr>
+    <tr><td>2</td><td>What already exists?</td><td>iGOT (1.7 Cr users, no MoSPI vertical), AI Tutor/Sarthi (basic), 218 AI courses; we add the vertical intelligence layer</td><td>"Nothing exists"</td></tr>
+    <tr><td>3</td><td>Why do we need your platform?</td><td>44% attrition, static classroom training, no doc→quiz, no real-time competency visibility</td><td>"Because PS asked"</td></tr>
+    <tr><td>4</td><td>What is actually innovative?</td><td>MoSPI competency ontology + grounded doc→MCQ + APAR-ready score + team heatmap</td><td>"We used GPT"</td></tr>
+    <tr><td>5</td><td>How do you calculate competency?</td><td>Multi-source: quiz accuracy + self-rating + role requirements + progress, weighted, transparent formula</td><td>"AI knows"</td></tr>
+    <tr><td>6</td><td>How do you know recommendation is correct?</td><td>Semantic match to competency tags + rules + feedback loop; we show why (explainable)</td><td>"Model says so"</td></tr>
+    <tr><td>7</td><td>What if AI is wrong?</td><td>Human-in-loop: MCQs flagged, admin approves, feedback corrects; fallback rules</td><td>"It won't be"</td></tr>
+    <tr><td>8</td><td>Where does data come from?</td><td>MVP: synthetic, FRAC, MoSPI public datasets, data.gov.in; prod: MoSPI/iGOT via MOU</td><td>"Real API"</td></tr>
+    <tr><td>9</td><td>What if iGOT API unavailable?</td><td>Adapter pattern + mock SSO + graceful fallback; we documented the integration contract</td><td>"We connect"</td></tr>
+    <tr><td>10</td><td>Can this work without private gov data?</td><td>Yes — demo fully on public + synthetic data; production needs authorized access</td><td>"No"</td></tr>
+    <tr><td>11</td><td>Why would govt adopt?</td><td>Mission Karmayogi needs ministry vertical; APAR linkage; GI Cloud + sovereign LLM story</td><td>"Because it's better"</td></tr>
+    <tr><td>12</td><td>Why can't iGOT add this itself?</td><td>It can — but PS asks for a solution NOW; we're the reference vertical, interoperable, not a fork</td><td>"They're lazy"</td></tr>
+    <tr><td>13</td><td>How does this scale?</td><td>Stateless services, vector DB, queues, containerized; 1.7 Cr users pattern proven by iGOT itself</td><td>"Very scalable"</td></tr>
+    <tr><td>14</td><td>What is your biggest risk?</td><td>Hallucinated MCQs — mitigated by grounding, QA filter, human approval, explainability</td><td>"Nothing"</td></tr>
+    <tr><td>15</td><td>Security/privacy?</td><td>MVP: no real PII, sanitized uploads, RBAC; prod: DPDP, audit logs, gov-cloud, sovereign LLM</td><td>"We use HTTPS"</td></tr>
+    <tr><td>16</td><td>How is this different from edX/Moodle?</td><td>They're LMS shells; we're a competency engine with MoSPI ontology + auto-assessment + analytics</td><td>"Ours is better"</td></tr>
+    <tr><td>17</td><td>What about non-English officers?</td><td>Bhashini-based tutor + subtitles; competency labels localized</td><td>"English is fine"</td></tr>
+    <tr><td>18</td><td>Can officers use it on low bandwidth?</td><td>PWA, offline quiz queue, light assets, sandbox client-side optional</td><td>"They have internet"</td></tr>
+    <tr><td>19</td><td>How do you prevent cheating on quizzes?</td><td>Timed, randomized, proctoring-lite (lockdown optional), retake variance</td><td>"We don't"</td></tr>
+    <tr><td>20</td><td>What's your 12-month roadmap?</td><td>Pilot with 1-2 MoSPI divisions → NSSTA batch → state DES → scale to Mission Karmayogi vertical</td><td>"AI everywhere"</td></tr>
+    <tr><td>21</td><td>Which competency areas matter most?</td><td>Sampling, survey design, Python/R, SDG indicators, data quality, labour/price stats (from PS)</td><td>"All"</td></tr>
+    <tr><td>22</td><td>How do you update the ontology?</td><td>Admin governance workflow + quarterly review + FRAC alignment</td><td>"Static"</td></tr>
+    <tr><td>23</td><td>Do you store employee data?</td><td>Prod: yes with consent + DPDP; MVP: synthetic only</td><td>"No data"</td></tr>
+    <tr><td>24</td><td>Why should judges believe it works?</td><td>We'll demo live: upload → MCQ → score in 60s; plus test data</td><td>"Trust us"</td></tr>
+    <tr><td>25</td><td>What if LLM cost explodes?</td><td>Cache, batch, local models (sovereign), prompt budgets; MVP on commodity API</td><td>"No"</td></tr>
+    <tr><td>26</td><td>Does it help workforce planning?</td><td>Heatmaps + trends today; predictive forecasting roadmap with honest caveats</td><td>"Yes, we predict"</td></tr>
+    <tr><td>27</td><td>How do you verify uploaded material isn't malicious?</td><td>Type/size checks, sanitization, optional AV, no-code execution of content</td><td>"We trust uploads"</td></tr>
+    <tr><td>28</td><td>Which iGOT courses do you map?</td><td>We map by competency tags from public catalog; deep link; prod via MOU</td><td>"All 5600"</td></tr>
+    <tr><td>29</td><td>What makes your quiz questions good?</td><td>Grounded in source, distractors from document, difficulty calibration, human approve</td><td>"GPT makes them"</td></tr>
+    <tr><td>30</td><td>Why should we pick you over 499 others?</td><td>Live 60s demo + MoSPI-depth + honest production path — not a chatbot wrapper</td><td>"We tried hardest"</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ PHASE 29 ============ -->
+<section class="ph" id="p29">
+  <div class="ph-head"><div class="ph-num">P29</div><div><div class="ph-title">Red Team Attack</div><div class="ph-tag">Hostile judge tries to destroy us + fixes</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Attack</th><th>Fix</th></tr>
+    <tr><td>"Generic LMS with AI chatbot"</td><td>Lead with competency brain + MoSPI ontology; chatbot is 1 feature of 8</td></tr>
+    <tr><td>"PDF→MCQ is a toy"</td><td>Show validation, grounded answers, difficulty, tagging to competencies</td></tr>
+    <tr><td>"You claim iGOT integration but no API"</td><td>Show adapter contract + mock + fallback; honest about MOU need</td></tr>
+    <tr><td>"Skill-gap calc is arbitrary"</td><td>Transparent formula + multi-source + explainability UI</td></tr>
+    <tr><td>"Hallucinated quizzes"</td><td>QA filter + human approval + provenance link to source text</td></tr>
+    <tr><td>"Privacy"</td><td>No real PII in demo; DPDP plan; audit logs; sovereign LLM path</td></tr>
+    <tr><td>"Can't scale"</td><td>Stateless + vector DB + queues; iGOT-scale precedent</td></tr>
+    <tr><td>"No adoption"</td><td>APAR linkage + mandate alignment + UX/mobile/Hindi</td></tr>
+    <tr><td>"Overclaims predictive"</td><td>Ship trends, roadmap forecasting with caveats</td></tr>
+    <tr><td>"Demo needs internet/AI"</td><td>Backup: cached quiz, rule-based recs, Pyodide client-side</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ PHASE 30 ============ -->
+<section class="ph" id="p30">
+  <div class="ph-head"><div class="ph-num">P30</div><div><div class="ph-title">Final Winability Score</div><div class="ph-tag">Honest numbers</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Factor</th><th>Score/10</th><th>Why</th></tr>
+    <tr><td>Problem Importance</td><td><b>9</b></td><td>Gov statistical capacity = national priority; attrition crisis real</td></tr>
+    <tr><td>Impact</td><td><b>8</b></td><td>Visible improvement in training outcomes; heatmaps for orgs</td></tr>
+    <tr><td>Innovation</td><td><b>8</b></td><td>MoSPI ontology + doc→MCQ + APAR score combo is fresh</td></tr>
+    <tr><td>Technical Feasibility</td><td><b>8</b></td><td>All MVP pieces proven tech (RAG, embeddings, Pyodide, Judge0)</td></tr>
+    <tr><td>Data Feasibility</td><td><b>7</b></td><td>Public/synthetic OK for MVP; prod needs authorization</td></tr>
+    <tr><td>Demo Potential</td><td><b>9</b></td><td>60-second upload→quiz→score = showstopper</td></tr>
+    <tr><td>Scalability</td><td><b>8</b></td><td>Containerized + vector DB + iGOT precedent</td></tr>
+    <tr><td>Differentiation</td><td><b>8</b></td><td>Vertical brain vs generic LMS; few will match domain depth</td></tr>
+    <tr><td>Government Relevance</td><td><b>9</b></td><td>FRAC-aligned, APAR-linked, Gi Cloud + sovereign AI story</td></tr>
+    <tr><td>Competition Risk</td><td><b>6</b></td><td>500 teams, many will do quiz-gen/chatbot; depth differentiates</td></tr>
+  </table></div>
+
+  <div class="grid g3">
+    <div class="card"><h5>WINABILITY</h5><p class="big">High (78/100)</p></div>
+    <div class="card"><h5>SATURATION</h5><p class="big">High (red ocean below)</p></div>
+    <div class="card"><h5>IMPL. RISK vs DIFF. OPP.</h5><p class="big">Medium vs High</p></div>
+  </div>
+
+  <div class="co g"><span class="ic">VERDICT</span><div><b>Should we choose PS 26101? YES — conditional.</b> Only if we ship the <b>doc→MCQ killer demo</b> + <b>MoSPI ontology</b> + honest integration story. It's a winnable, high-impact PS with a clear differentiation lane. If we build "another AI LMS", we lose.</div></div>
+</section>
+
+<!-- ============ PHASE 31 ============ -->
+<section class="ph" id="p31">
+  <div class="ph-head"><div class="ph-num">P31</div><div><div class="ph-title">Source Quality Control</div><div class="ph-tag">Audit our own claims</div></div></div>
+
+  <div class="tblwrap"><table class="mini">
+    <tr><th>Claim</th><th>Source</th><th>Quality</th><th>Verified?</th></tr>
+    <tr><td>iGOT 1.7 Cr users, 5600+ courses, FY25-26 APAR mandate</td><td>Lok Sabha reply (PIB/news18/newkerala)</td><td>Primary gov</td><td>✅ Yes</td></tr>
+    <tr><td>44% SSS attrition, stagnation</td><td>Indian Express Jan 2026 (AIASO letter)</td><td>Primary journalism</td><td>✅ Yes</td></tr>
+    <tr><td>AI Tutor/Sarthi/AI-CBP Tool exist but nascent</td><td>Same Lok Sabha reply</td><td>Primary gov</td><td>✅ Yes</td></tr>
+    <tr><td>Sadhana Saptah 3.18 Cr completions</td><td>Tarento case study</td><td>Vendor</td><td>✅ Yes (vendor)</td></tr>
+    <tr><td>FRAC framework</td><td>DoPT/Mission Karmayogi PDF</td><td>Primary gov</td><td>✅ Yes</td></tr>
+    <tr><td>NSSTA STA survey + emerging skill gaps</td><td>PIB Rajya Sabha</td><td>Primary gov</td><td>✅ Yes</td></tr>
+    <tr><td>Tarento = iGOT tech partner; AI features = moderation/tagging (no quiz-gen)</td><td>Tarento case study</td><td>Vendor</td><td>✅ Yes (vendor)</td></tr>
+    <tr><td>"Coding sandbox" expectation</td><td>sihone modal (community mirror)</td><td>Community</td><td>⚠️ Likely, unverified official</td></tr>
+    <tr><td>"No public iGOT REST API"</td><td>Absence of docs found; Flutter helper hints internal</td><td>Absence</td><td>⚠️ INFERENCE</td></tr>
+    <tr><td>"MoSPI has no public competency dictionary"</td><td>Absence in search</td><td>Absence</td><td>⚠️ INFERENCE</td></tr>
+    <tr><td>MoSPI sanctioned strength</td><td>—</td><td>—</td><td>❌ UNVERIFIED</td></tr>
+  </table></div>
+
+  <h3>UNSOLVED / UNVERIFIED QUESTIONS</h3>
+  <ul>
+    <li>Official iGOT API surface (public vs MOU)</li>
+    <li>MoSPI sanctioned strength &amp; exact cadre numbers</li>
+    <li>Whether MoSPI DIID has internal competency drafts</li>
+    <li>Official SIH 2026 portal is live? (sih.gov.in/sih2026PS)</li>
+    <li>Student access to iGOT sandbox/test environment</li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 32 ============ -->
+<section class="ph" id="p32">
+  <div class="ph-head"><div class="ph-num">P32</div><div><div class="ph-title">Final Research Synthesis</div><div class="ph-tag">What exact product wins?</div></div></div>
+
+  <div class="grid g2">
+    <div class="card"><h5>Core Insight</h5><p>iGOT is the horizontal floor; the prize is the <b>MoSPI vertical brain</b> — competency ontology + gap engine + auto-assessment wired into iGOT.</p></div>
+    <div class="card"><h5>Biggest Problem</h5><p>Training is static/classroom-bound while workforce shrinks &amp; skills shift (44% attrition, 2026).</p></div>
+    <div class="card"><h5>Biggest Gap</h5><p>No MoSPI role-competency dictionary, no doc→MCQ, no coding sandbox, no team heatmap.</p></div>
+    <div class="card"><h5>Biggest Competition</h5><p>500 teams; most build AI-LMS/chatbot/quiz-gen. Saturation high, depth low.</p></div>
+    <div class="card"><h5>Biggest Opportunity</h5><p>FRAC-aligned MoSPI competency layer, trusted + explainable, demo-able in 60s.</p></div>
+    <div class="card"><h5>Best AI Use</h5><p>Doc→MCQ (grounded) + skill-gap inference + semantic path + Hindi tutor. No IRT/KG/forecast in MVP.</p></div>
+    <div class="card"><h5>Best Differentiator</h5><p>Upload→quiz→score in 60s, backed by MoSPI ontology + APAR-ready score.</p></div>
+    <div class="card"><h5>Best Architecture</h5><p>B (strong): Next.js + FastAPI + Postgres/pgvector + RAG + Pyodide sandbox + adapter; C's story as roadmap.</p></div>
+    <div class="card"><h5>Best MVP</h5><p>8 flows (profile→assess→gap→path→learn→upload→quiz→score) + heatmap + mock iGOT.</p></div>
+    <div class="card"><h5>Biggest Risk</h5><p>Hallucinated MCQs / "another LMS" perception — mitigated by grounding + depth.</p></div>
+    <div class="card"><h5>Best Demo</h5><p>Live upload of real document → 5 MCQs &lt;60s → answer → competency score moves → admin heatmap.</p></div>
+    <div class="card"><h5>Best USP</h5><p>"AI competency brain for India's Official Statistical System" — not an LMS.</p></div>
+  </div>
+
+  <div class="co g"><span class="ic">FINAL REC</span><div><b>Build "SankhyikAI"</b> — a MoSPI-vertical competency intelligence layer: FRAC-aligned ontology, multi-source skill-gap engine, semantic iGOT-aware path, grounded doc→MCQ, Pyodide/Judge0 sandbox, admin heatmap, Hindi tutor, APAR-ready scores. Demo the 60-second upload→quiz→score loop live. Be honest about integration — win on depth, not buzz.</div></div>
+</section>
+
+<!-- ============ BATTLE CARD ============ -->
+<div id="battle">
+<div class="battle">
+  <h2>⚡ 1-Page Battle Card</h2>
+  <p class="sbt">PS 26101 · MoSPI · Smart Education — the whole war in one view</p>
+
+  <div class="bgrid">
+    <div class="bcard"><div class="k">Problem</div><p>Statistical officers ko static, generic training; skill gap invisible; uploaded docs kabhi quizzes nahi bante.</p></div>
+    <div class="bcard"><div class="k">Who Suffers</div><p>JSO/SSO/ISS officers · supervisors · NSSTA trainers · DIID · state DES · HR/APAR</p></div>
+    <div class="bcard"><div class="k">Current System</div><p>iGOT (1.7 Cr users, 5600+ courses, basic AI Tutor/Sarthi) + NSSTA classroom + manual MCQs</p></div>
+    <div class="bcard"><div class="k">Why Not Enough</div><p>Generic recs · no MoSPI vertical · no doc→quiz · no sandbox · no real-time competency visibility · 44% attrition</p></div>
+    <div class="bcard"><div class="k">What Exists</div><p>FRAC · iGOT AI (nascent) · global skill graphs (Eightfold/Workday) · Open edX · Judge0 · Bhashini · knight-mcq</p></div>
+    <div class="bcard"><div class="k">Biggest Gap</div><p>MoSPI-specific competency ontology + grounded doc→MCQ + coding sandbox + team heatmap</p></div>
+    <div class="bcard"><div class="k">Best Opportunity</div><p>Be the reference ministry vertical for Mission Karmayogi</p></div>
+    <div class="bcard"><div class="k">Killer Feature</div><p>Upload PDF/PPT → 5 MCQs in &lt;60s → score updates competency → admin heatmap</p></div>
+    <div class="bcard"><div class="k">Best USP</div><p>"AI competency brain for India's Official Statistical System" — not another LMS</p></div>
+    <div class="bcard"><div class="k">AI Role</div><p>Skill-gap inference · semantic path · grounded MCQ-gen · Hindi tutor. Rules for trust; humans approve.</p></div>
+    <div class="bcard"><div class="k">Data Strategy</div><p>MVP: public + synthetic + FRAC + MoSPI open data. Prod: authorized MoSPI/iGOT via MOU.</p></div>
+    <div class="bcard"><div class="k">Tech Stack</div><p>Next.js · FastAPI · Postgres+pgvector · RAG · Pyodide/Judge0 · JWT/RBAC · Gi Cloud-ready · sovereign LLM option</p></div>
+    <div class="bcard"><div class="k">Biggest Risk</div><p>Hallucinated MCQs / "generic LMS" perception — fix with grounding + QA + human approval</p></div>
+    <div class="bcard"><div class="k">Why Judges May Like</div><p>Live 60s demo · MoSPI domain depth · APAR linkage · honest integration · gov-cloud + sovereign AI</p></div>
+    <div class="bcard"><div class="k">Why Judges May Reject</div><p>If we overclaim iGOT API · ignore security · demo needs internet · no stats domain evidence</p></div>
+    <div class="bcard"><div class="k">How We Differentiate</div><p>Competency ontology + grounded quiz engine + sandbox + heatmap — depth over buzz.</p></div>
+  </div>
+
+  <div class="score-row">
+    <div class="score"><div class="s-n g">9</div><div class="s-l">Problem Impact</div></div>
+    <div class="score"><div class="s-n">8</div><div class="s-l">Innovation</div></div>
+    <div class="score"><div class="s-n">8</div><div class="s-l">Feasibility</div></div>
+    <div class="score"><div class="s-n">9</div><div class="s-l">Demo Potential</div></div>
+    <div class="score"><div class="s-n">9</div><div class="s-l">Gov Relevance</div></div>
+    <div class="score x"><div class="s-n a">78/100</div><div class="s-l">WINABILITY</div></div>
+  </div>
+
+  <div class="verdict yes">✅ SHOULD WE CHOOSE PS 26101? <b>YES — if we build the competency brain with the 60-second upload→quiz demo. NO if we build another AI LMS.</b></div>
+
+  <p class="lift">SankhyikAI · Jankari → Kaushal → Karya</p>
+</div>
+</div>
+
+<div class="rule"></div>
+
+</div><!-- /wrap -->
+
+<footer class="foot">
+  <b>SIH 2026 · PS 26101 · God-Mode Research — all 32 phases + Battle Card</b> · Built from primary sources (PIB, Lok Sabha reply, Indian Express, DoPT, MoSPI, Tarento, GitHub, sih.gov.in mirrors).<br>
+  FACT = sourced · INFERENCE = derived · ASSUMPTION/UNVERIFIED = flagged. Sources listed per phase. MVP ≠ production. Don't overclaim iGOT APIs. Happy hacking. 🇮🇳
+</footer>
+
+</body>
+</html>
